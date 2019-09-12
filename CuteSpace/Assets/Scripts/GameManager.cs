@@ -5,14 +5,29 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private GameManager m_Instance;
+    public GameManager Instance { get { return m_Instance; } }
+
     [HideInInspector]
     public int researchPoints;
     [HideInInspector]
     public int numberOfFriends;
 
+    [HideInInspector]
+    public int currentFuel;
+    [HideInInspector]
+    public int maxFuel;
+
+    public int startingFuel;
+
+    [HideInInspector]
+    public List<GameObject> acquiredResearch;
+
+
 
     private void Awake()
     {
+        m_Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -20,12 +35,22 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InitializeCurrency();
+        InitializeFuel();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    
+
+    //Initializej Key Variables/////////////////////
+
+    private void InitializeFuel()
+    {
+        maxFuel = startingFuel;
+        currentFuel = maxFuel;
     }
 
     private void InitializeCurrency()
@@ -34,23 +59,25 @@ public class GameManager : MonoBehaviour
         numberOfFriends = 0;
     }
 
-    public void addResearchPoints(int amountToAdd)
+    //Alter Key Variables//////////////////////
+
+    public void AlterNumberOfFriends(int amountToAlter)
     {
-        researchPoints += amountToAdd;
+        numberOfFriends += amountToAlter;
     }
 
-    public void addNumberOfFriends(int amountToAdd)
+    public void AlterResearchPoints(int amountToAlter)
     {
-        numberOfFriends += amountToAdd;
+        researchPoints -= amountToAlter;
     }
 
-    public void decreaseResearchPoints(int amountToDecrease)
+    public void AlterMaxFuel(int amountToAlter)
     {
-        researchPoints -= amountToDecrease;
+        maxFuel += amountToAlter;
     }
 
-    public void decreaseNumberOfFriends(int amountToDecrease)
+    public void AlterCurrentFuel(int amountToAlter)
     {
-        researchPoints -= amountToDecrease;
+        currentFuel += amountToAlter;
     }
 }

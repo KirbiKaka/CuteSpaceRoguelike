@@ -31,13 +31,11 @@ public class PlayButton : MonoBehaviour
     public void MouseEnter()
     {
         currentButton.texture = hoverButton;
-        Debug.Log("Moused Over Button");
     }
 
     public void MouseExit()
     {
         currentButton.texture = defaultButton;
-        Debug.Log("Mouse Left Button");
     }
 
     public void LoadMinigame()
