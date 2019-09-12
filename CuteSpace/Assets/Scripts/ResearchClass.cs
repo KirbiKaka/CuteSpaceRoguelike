@@ -12,20 +12,25 @@ public class ResearchClass : MonoBehaviour
 
     public Texture defaultImage;
     public Texture unavailableImage;
-    private RawImage currentImage;
+    public RawImage currentImage;
 
     // Start is called before the first frame update
     void Start()
     {
         isPurchased = false;
-        currentImage = gameObject.GetComponent<RawImage>();
-        currentImage.texture = defaultImage;
+        InitalizeResearchImage();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void InitalizeResearchImage()
+    {
+        currentImage = gameObject.GetComponent<RawImage>();
+        currentImage.texture = defaultImage;
     }
 
     public bool CheckIfCanAfford()
@@ -66,11 +71,19 @@ public class ResearchClass : MonoBehaviour
 
     public void SetUnavailable()
     {
+        if (currentImage == null)
+        {
+            Debug.Log("problem with curent image");
+        }
         currentImage.texture = unavailableImage;
     }
 
     public void SetAvailable()
     {
+        if (currentImage == null)
+        {
+            Debug.Log("problem with curent image");
+        }
         currentImage.texture = defaultImage;
     }
 
