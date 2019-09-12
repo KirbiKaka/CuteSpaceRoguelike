@@ -31,6 +31,8 @@ public class MainMenuUIManager : MonoBehaviour
         mainMenu.SetActive(false);
     }
 
+
+
     public void CloseShop()
     {
         shop.SetActive(false);
