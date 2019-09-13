@@ -101,7 +101,16 @@ public class GameManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "preLoadScene")
+        {
+            AudioManager.Instance.CrossfadeMusic("Explore", .1f);
+        }
+        else
+        {
+            AudioManager.Instance.CrossfadeMusic("Explore", 1);
+        }
         SceneManager.LoadScene("MainMenu");
-        AudioManager.Instance.CrossfadeMusic("Explore", 1);
+
     }
 }
