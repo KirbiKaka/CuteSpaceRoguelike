@@ -16,11 +16,10 @@ public class GameManager : MonoBehaviour
     public int numberOfFriends;
 
     [HideInInspector]
-    public int currentFuel;
-    [HideInInspector]
-    public int maxFuel;
+    public int maxFuel = 15;
 
-    public int startingFuel;
+    [HideInInspector]
+    public int maxDurability = 10;
 
     [HideInInspector]
     public float researchGainMultiplier;
@@ -40,7 +39,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InitializeCurrency();
-        InitializeFuel();
         AudioManager.Instance.Play2DSound("Explore", true, true);
     }
 
@@ -52,12 +50,6 @@ public class GameManager : MonoBehaviour
     
 
     //Initializej Key Variables/////////////////////
-
-    private void InitializeFuel()
-    {
-        maxFuel = startingFuel;
-        currentFuel = maxFuel;
-    }
 
     private void InitializeCurrency()
     {

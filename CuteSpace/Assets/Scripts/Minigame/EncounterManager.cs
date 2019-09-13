@@ -47,7 +47,18 @@ public class EncounterManager : MonoBehaviour
         EventManager.AddInvokerForRoverMoveEvent(this);
 
         // TODO: inc playerFuelMax based on supergame upgrades
-        playerFuel = playerFuelMax;
+        GameObject tempManager = GameObject.FindGameObjectWithTag("GameController");
+        if (tempManager != null)
+        {
+            playerFuelMax = tempManager.GetComponent<GameManager>().maxFuel;
+            playerFuel = playerFuelMax;
+        }
+        else
+        {
+            playerFuel = playerFuelMax;
+            Debug.Log("There is no GameManager in this scene. Please add one.");
+        }
+
         // TODO: inc playerDurabilityMax based on supergame upgrades
         playerDurability = playerDurabilityMax;
         UpdateReadouts();
@@ -145,39 +156,54 @@ public class EncounterManager : MonoBehaviour
         // Start a new encounter
         if (waitingForResolution && resolutionTapTimer.Finished)
         {
-            dialogBox.SetActive(false);
-            if (previousEncounter != null)
+            if (playerFuel <= 0 || playerDurability <= 0)
             {
-                Object.Destroy(previousEncounter.gameObject);
+                GameObject tempManager = GameObject.FindGameObjectWithTag("GameController");
+                if (tempManager != null)
+                {
+                    tempManager.GetComponent<GameManager>().LoadMainMenu();
+                }
+                else
+                {
+                    Debug.Log("There is no GameManager in this scene. Please add one.");
+                }
             }
-            previousEncounter = currentEncounter;
-            //TODO RANDOMIZE THE ENCOUNTER INSTEAD OF JUST GOING THRU
-            Vector3 encounterPosition = Camera.main.transform.position;
-            encounterPosition.x += 850;
-            encounterPosition.y -= 100;
-            encounterPosition.z = 0;
-            GameObject encounter = Instantiate(encounterPool1[encounterCount], encounterPosition, Quaternion.identity);
-            currentEncounter = encounter.GetComponent<AdventureNode>();
-            encounterCount += 1;
-            roverMoveEvent.Invoke(currentEncounter.gameObject);
-
-            // Every event costs 1 fuel
-            ChangeFuel(-1);
-            UpdateReadouts();
-
-            if (toggleSpawnMoreGround)
+            else
             {
-                Vector3 groundPosition = Camera.main.transform.position;
-                groundPosition.x += 936;
-                groundPosition.z = 0;
-                Instantiate(groundPrefab, groundPosition, Quaternion.identity);
-            }
-            toggleSpawnMoreGround = !toggleSpawnMoreGround;
+                dialogBox.SetActive(false);
+                if (previousEncounter != null)
+                {
+                    Object.Destroy(previousEncounter.gameObject);
+                }
+                previousEncounter = currentEncounter;
+                //TODO RANDOMIZE THE ENCOUNTER INSTEAD OF JUST GOING THRU
+                Vector3 encounterPosition = Camera.main.transform.position;
+                encounterPosition.x += 850;
+                encounterPosition.y -= 100;
+                encounterPosition.z = 0;
+                GameObject encounter = Instantiate(encounterPool1[encounterCount], encounterPosition, Quaternion.identity);
+                currentEncounter = encounter.GetComponent<AdventureNode>();
+                encounterCount += 1;
+                roverMoveEvent.Invoke(currentEncounter.gameObject);
 
-            Object.Destroy(resolutionTapTimer);
-            resolutionTapTimer = gameObject.AddComponent<Timer>();
-            resolutionTapTimer.Duration = 1;
-            waitingForResolution = false;
+                // Every event costs 1 fuel
+                ChangeFuel(-1);
+                UpdateReadouts();
+
+                if (toggleSpawnMoreGround)
+                {
+                    Vector3 groundPosition = Camera.main.transform.position;
+                    groundPosition.x += 936;
+                    groundPosition.z = 0;
+                    Instantiate(groundPrefab, groundPosition, Quaternion.identity);
+                }
+                toggleSpawnMoreGround = !toggleSpawnMoreGround;
+
+                Object.Destroy(resolutionTapTimer);
+                resolutionTapTimer = gameObject.AddComponent<Timer>();
+                resolutionTapTimer.Duration = 1;
+                waitingForResolution = false;
+            }
         }
     }
 
