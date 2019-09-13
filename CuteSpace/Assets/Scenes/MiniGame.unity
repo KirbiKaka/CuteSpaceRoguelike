@@ -2433,7 +2433,7 @@ PrefabInstance:
         type: 3}
       propertyPath: testFriendRequirement
       value: 
-      objectReference: {fileID: 675776310170510181, guid: d93dbb4b8da024d258b98a52e7b70022,
+      objectReference: {fileID: 9198639231630593853, guid: 195d44c8f6b6048b9a3276f171af74c5,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91a5bc6aa3d654a3caea49322ad459e8, type: 3}
