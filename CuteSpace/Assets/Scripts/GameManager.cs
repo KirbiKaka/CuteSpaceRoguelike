@@ -88,11 +88,6 @@ public class GameManager : MonoBehaviour
         maxFuel += amountToAlter;
     }
 
-    public void AlterCurrentFuel(int amountToAlter)
-    {
-        currentFuel += amountToAlter;
-    }
-
     public void LoadMinigame()
     {
         SceneManager.LoadScene("MiniGame");
