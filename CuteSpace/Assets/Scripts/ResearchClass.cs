@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Scripts.Audio;
 
 public class ResearchClass : MonoBehaviour
 {
@@ -77,6 +78,7 @@ public class ResearchClass : MonoBehaviour
             isPurchased = true;
             SetUnavailable();
             displayCostText.text = "Purchased!";
+            AudioManager.Instance.Play2DSound("UpgradeEvent");
             ApplyBenefit();
         }
 

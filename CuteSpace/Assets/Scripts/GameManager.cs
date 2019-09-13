@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Scripts.Audio;
 
 
 public class GameManager : MonoBehaviour
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         InitializeCurrency();
         InitializeFuel();
+        AudioManager.Instance.Play2DSound("Explore", true, true);
     }
 
     // Update is called once per frame
@@ -96,5 +99,11 @@ public class GameManager : MonoBehaviour
     public void AlterCurrentFuel(int amountToAlter)
     {
         currentFuel += amountToAlter;
+    }
+
+    public void LoadMinigame()
+    {
+        SceneManager.LoadScene("MiniGame");
+        AudioManager.Instance.CrossfadeMusic("MainMenu", 1);
     }
 }
