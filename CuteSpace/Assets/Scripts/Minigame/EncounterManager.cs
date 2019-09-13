@@ -28,6 +28,7 @@ public class EncounterManager : MonoBehaviour
     int playerResearch;
 
     int encounterCount;
+    int prevEncounterCount;
 
     Timer startGameTimer;
     bool gameStarted;
@@ -86,9 +87,10 @@ public class EncounterManager : MonoBehaviour
             encounterPosition.x += 820;
             encounterPosition.y -= 100;
             encounterPosition.z = 0;
+            encounterCount = Random.Range(0, encounterPool1.Count);
+            prevEncounterCount = encounterCount;
             GameObject encounter = Instantiate(encounterPool1[encounterCount], encounterPosition, Quaternion.identity);
             currentEncounter = encounter.GetComponent<AdventureNode>();
-            encounterCount += 1;
             roverMoveEvent.Invoke(currentEncounter.gameObject);
         }
 
@@ -186,11 +188,26 @@ public class EncounterManager : MonoBehaviour
                 encounterPosition.x += 850;
                 encounterPosition.y -= 100;
                 encounterPosition.z = 0;
+                encounterCount = Random.Range(0, encounterPool1.Count);
+
+                //check for dupe encounters 
+                if (encounterCount == prevEncounterCount && encounterCount != encounterPool1.Count - 1)
+                {
+                    if (encounterCount != encounterPool1.Count - 1)
+                    {
+                        encounterCount += 1;
+
+                    }
+                    else
+                    {
+                        encounterCount = 0;
+                    }
+                }
+                
                 GameObject encounter = Instantiate(encounterPool1[encounterCount], encounterPosition, Quaternion.identity);
                 currentEncounter = encounter.GetComponent<AdventureNode>();
-                encounterCount += 1;
                 roverMoveEvent.Invoke(currentEncounter.gameObject);
-
+                prevEncounterCount = encounterCount;
                 // Every event costs 1 fuel
                 ChangeFuel(-1);
                 UpdateReadouts();
