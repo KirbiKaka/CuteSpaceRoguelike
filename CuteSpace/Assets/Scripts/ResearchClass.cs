@@ -13,7 +13,9 @@ public class ResearchClass : MonoBehaviour
     public Texture defaultImage;
     public Texture unavailableImage;
     public RawImage currentImage;
-    private Text displayText;
+
+    public Text displayNameText;
+    public Text displayCostText;
 
     public string researchName;
 
@@ -33,8 +35,8 @@ public class ResearchClass : MonoBehaviour
 
     void InitializeResearchLabels()
     {
-        displayText = GetComponentInChildren<Text>();
-        displayText.text = "Research: " + researchCost;
+        displayCostText.text = "Research: " + researchCost;
+        displayNameText.text = researchName;
     }
 
     void InitializeResearchImage()
@@ -74,7 +76,7 @@ public class ResearchClass : MonoBehaviour
             tempManager.GetComponent<GameManager>().AlterResearchPoints(-researchCost);
             isPurchased = true;
             SetUnavailable();
-            displayText.text = "Purchased!";
+            displayCostText.text = "Purchased!";
             ApplyBenefit();
         }
 

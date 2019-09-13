@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameManager Instance { get { return m_Instance; } }
 
     [HideInInspector]
-    public int researchPoints;
+    public float researchPoints;
     [HideInInspector]
     public int numberOfFriends;
 
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public int startingFuel;
 
     [HideInInspector]
-    public int researchGainMultiplier;
+    public float researchGainMultiplier;
 
     [HideInInspector]
     public List<GameObject> acquiredResearch;
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         researchPoints = 0;
         numberOfFriends = 0;
-        researchGainMultiplier = 1;
+        researchGainMultiplier = 0;
     }
 
     //Alter Key Variables//////////////////////
@@ -70,11 +70,17 @@ public class GameManager : MonoBehaviour
         numberOfFriends += amountToAlter;
     }
 
+    public void AlterResearchModifier(float amountToAlter)
+    {
+        researchGainMultiplier += amountToAlter;
+        Debug.Log("new research modifier:" + researchGainMultiplier);
+    }
+
     public void AlterResearchPoints(int amountToAlter)
     {
         if (amountToAlter > 0)
         {
-            researchPoints += (amountToAlter * (1 + researchGainMultiplier/100));
+            researchPoints += (amountToAlter * (1 + researchGainMultiplier));
         }
         else
         {

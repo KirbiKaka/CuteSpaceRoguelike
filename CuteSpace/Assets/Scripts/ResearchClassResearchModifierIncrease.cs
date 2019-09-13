@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResearchClassMaxFuel : ResearchClass
+public class ResearchClassResearchModifierIncrease : ResearchClass
 {
-
-    public int maxFuelIncrease;
+    public float researchModifierIncrease;
 
     public override void ApplyBenefit()
     {
-
         GameObject tempManager = GameObject.FindGameObjectWithTag("GameController");
-        tempManager.GetComponent<GameManager>().AlterMaxFuel(maxFuelIncrease);
+        tempManager.GetComponent<GameManager>().AlterResearchModifier(researchModifierIncrease);
     }
 }
