@@ -106,4 +106,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MiniGame");
         AudioManager.Instance.CrossfadeMusic("MainMenu", 1);
     }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        AudioManager.Instance.CrossfadeMusic("Explore", 1);
+    }
 }
