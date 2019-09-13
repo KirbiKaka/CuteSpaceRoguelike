@@ -13,12 +13,16 @@ public class ResearchClass : MonoBehaviour
     public Texture defaultImage;
     public Texture unavailableImage;
     public RawImage currentImage;
+    private Text displayText;
+
+    public string researchName;
 
     // Start is called before the first frame update
     void Start()
     {
         isPurchased = false;
-        InitalizeResearchImage();
+        InitializeResearchImage();
+        InitializeResearchLabels();
     }
 
     // Update is called once per frame
@@ -27,7 +31,13 @@ public class ResearchClass : MonoBehaviour
         
     }
 
-    void InitalizeResearchImage()
+    void InitializeResearchLabels()
+    {
+        displayText = GetComponentInChildren<Text>();
+        displayText.text = "Research: " + researchCost;
+    }
+
+    void InitializeResearchImage()
     {
         currentImage = gameObject.GetComponent<RawImage>();
         currentImage.texture = defaultImage;
@@ -64,6 +74,7 @@ public class ResearchClass : MonoBehaviour
             tempManager.GetComponent<GameManager>().AlterResearchPoints(-researchCost);
             isPurchased = true;
             SetUnavailable();
+            displayText.text = "Purchased!";
             ApplyBenefit();
         }
 

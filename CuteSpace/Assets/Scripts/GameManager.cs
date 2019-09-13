@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public int startingFuel;
 
     [HideInInspector]
+    public int researchGainMultiplier;
+
+    [HideInInspector]
     public List<GameObject> acquiredResearch;
 
 
@@ -57,6 +60,7 @@ public class GameManager : MonoBehaviour
     {
         researchPoints = 0;
         numberOfFriends = 0;
+        researchGainMultiplier = 1;
     }
 
     //Alter Key Variables//////////////////////
@@ -68,7 +72,14 @@ public class GameManager : MonoBehaviour
 
     public void AlterResearchPoints(int amountToAlter)
     {
-        researchPoints -= amountToAlter;
+        if (amountToAlter > 0)
+        {
+            researchPoints += (amountToAlter * (1 + researchGainMultiplier/100));
+        }
+        else
+        {
+            researchPoints += amountToAlter;
+        }
     }
 
     public void AlterMaxFuel(int amountToAlter)
