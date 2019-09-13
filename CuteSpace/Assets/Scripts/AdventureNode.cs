@@ -16,7 +16,7 @@ public class AdventureNode : MonoBehaviour
         EventManager.AddListenerForTestEvent(handleTestEvent);
         EventManager.AddInvokerForRoverMoveEvent(this);
         moveWaitTimer = gameObject.AddComponent<Timer>();
-        moveWaitTimer.Duration = 5;
+        moveWaitTimer.Duration = 2;
         moveWaitTimer.Run();
     }
 

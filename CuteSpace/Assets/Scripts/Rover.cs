@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class Rover : MonoBehaviour
 {
+    // How far away from the node to stop
+    public int ADVENTURE_NODE_OFFSET_DISTANCE = 350;
+    public int ROVER_WALK_SPEED = 120;
+
     //Declare vars and const
-    float roverSpeed;
-    float eventLocationX = 8;
     TestEvent testEvent = new TestEvent();
     int testNumber = 5;
     IEnumerator coroutine;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +35,13 @@ public class Rover : MonoBehaviour
     {
         GameObject adventureNode = GameObject.FindGameObjectWithTag("StopHere");
         //Transform currentRoverPosition = gameObject.transform;
-        Vector2 roverStartPostion = gameObject.transform.position;
-        Vector2 currentAdventureNodePostion = adventureNode.transform.position;
-        coroutine = MoveFromTo(gameObject.transform, roverStartPostion, currentAdventureNodePostion,1);
+        Vector2 roverStartPosition = gameObject.transform.position;
+        Vector2 currentAdventureNodePosition = adventureNode.transform.position;
+        // Don't move the Rover up or down
+        currentAdventureNodePosition.y = roverStartPosition.y;
+        // Don't walk aaaaall the way up to the adventure node
+        currentAdventureNodePosition.x -= ADVENTURE_NODE_OFFSET_DISTANCE;
+        coroutine = MoveFromTo(gameObject.transform, roverStartPosition, currentAdventureNodePosition, ROVER_WALK_SPEED);
         StartCoroutine(coroutine);
     }
 
