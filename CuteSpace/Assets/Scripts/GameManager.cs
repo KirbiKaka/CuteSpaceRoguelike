@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     {
         if (amountToAlter > 0)
         {
-            researchPoints += (amountToAlter * (1 + researchGainMultiplier));
+            Mathf.RoundToInt(researchPoints += (amountToAlter * (1 + researchGainMultiplier)));
         }
         else
         {
