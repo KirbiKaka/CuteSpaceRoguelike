@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Research
+  - StopHere
   layers:
   - Default
   - TransparentFX
