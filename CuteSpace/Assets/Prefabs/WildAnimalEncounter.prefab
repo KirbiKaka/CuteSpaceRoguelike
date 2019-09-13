@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8482595241952723354}
   - component: {fileID: 124577230889396480}
   - component: {fileID: 7932134640708917284}
+  - component: {fileID: -4883964273169449337}
   m_Layer: 9
   m_Name: WildAnimalEncounter
   m_TagString: StopHere
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5645470402655939966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 543, y: 433, z: 0}
-  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_LocalScale: {x: 27, y: 27, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -70,7 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 651086837
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 82e4d7295a69e441eaef46678a7f0451, type: 3}
+  m_Sprite: {fileID: 6052526902760706094, guid: d6bf2f2313d5449c4a5c89b2328e88f2,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,3 +102,22 @@ MonoBehaviour:
   resolution1AltText: 
   resolution2Text: You got +30 research!
   resolution2AltText: 
+--- !u!95 &-4883964273169449337
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5645470402655939966}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bd83a904ca4f8458f92c9b08554f5368, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -82,7 +82,7 @@ public class EncounterManager : MonoBehaviour
             gameStarted = true;
 
             Vector3 encounterPosition = Camera.main.transform.position;
-            encounterPosition.x += 850;
+            encounterPosition.x += 820;
             encounterPosition.y -= 100;
             encounterPosition.z = 0;
             GameObject encounter = Instantiate(encounterPool1[encounterCount], encounterPosition, Quaternion.identity);

@@ -210,7 +210,7 @@ PrefabInstance:
     - target: {fileID: -2468199145018488150, guid: 441336afe45d44d1180333000c2aaec2,
         type: 3}
       propertyPath: ADVENTURE_NODE_OFFSET_DISTANCE
-      value: 320
+      value: 330
       objectReference: {fileID: 0}
     - target: {fileID: 8260894994843849179, guid: 441336afe45d44d1180333000c2aaec2,
         type: 3}
