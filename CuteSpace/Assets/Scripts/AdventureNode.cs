@@ -11,14 +11,19 @@ public class AdventureNode : MonoBehaviour
     public const int OUTCOME_1_ALT = 1;
     public const int OUTCOME_2_MAIN = 2;
     public const int OUTCOME_2_ALT = 3;
+    public const int OUTCOME_1_ALT_2 = 4;
+    public const int OUTCOME_2_ALT_2 = 5;
+
 
     public string mainDialog;
     public string choice1Text;
     public string choice2Text;
     public string resolution1Text;
     public string resolution1AltText;
+    public string resolution1Alt2Text;
     public string resolution2Text;
     public string resolution2AltText;
+    public string resolution2Alt2Text;
 
     int choiceMade = -1;
 
@@ -32,7 +37,7 @@ public class AdventureNode : MonoBehaviour
     }
 
     // EncounterManager will call this first. Use this to calculate everything else
-    public void MakeChoice(int choice)
+    virtual public void MakeChoice(int choice)
     {
         // Base version assumes one result per choice. Overwrite this if different.
         if (choice == 1)
@@ -49,6 +54,11 @@ public class AdventureNode : MonoBehaviour
         return choiceMade;
     }
 
+    public void SetChoiceMade(int choice)
+    {
+        choiceMade = choice;
+    }
+
     // Requires MakeChoice to be called first
     public string GetResolutionText()
     {
@@ -60,8 +70,13 @@ public class AdventureNode : MonoBehaviour
                 return resolution1AltText;
             case OUTCOME_2_MAIN:
                 return resolution2Text;
-            default:
+            case OUTCOME_2_ALT:
                 return resolution2AltText;
+            case OUTCOME_1_ALT_2:
+                return resolution1Alt2Text;
+            default:
+                return resolution2Alt2Text;
+
         }
     }
 

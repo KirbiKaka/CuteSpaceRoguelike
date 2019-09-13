@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CaveEncounter : AdventureNode
+public class TeamAwayEncounter : AdventureNode
 {
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class CaveEncounter : AdventureNode
         // Base version assumes one result per choice. Overwrite this if different.
         if (choice == 1)
         {
-            
+
             SetChoiceMade(OUTCOME_1_MAIN);
         }
         else
@@ -34,7 +34,6 @@ public class CaveEncounter : AdventureNode
             else
             {
                 SetChoiceMade(OUTCOME_2_ALT);
-                //get energizer bunny
             }
 
         }
@@ -45,9 +44,7 @@ public class CaveEncounter : AdventureNode
         switch (GetChoiceMade())
         {
             case OUTCOME_1_MAIN:
-                return -2;
-            case OUTCOME_2_ALT:
-                return 2;
+                return -1;
             default:
                 return 0;
         }
@@ -57,19 +54,8 @@ public class CaveEncounter : AdventureNode
     {
         switch (GetChoiceMade())
         {
-            case OUTCOME_1_MAIN:
+            case OUTCOME_2_ALT:
                 return 30;
-            default:
-                return 0;
-        }
-    }
-
-    override public int GetScrapOutcome()
-    {
-        switch (GetChoiceMade())
-        {
-            case OUTCOME_1_MAIN:
-                return 15;
             default:
                 return 0;
         }
@@ -82,10 +68,9 @@ public class CaveEncounter : AdventureNode
             case OUTCOME_1_MAIN:
                 return -1;
             case OUTCOME_2_ALT:
-                return -1;
+                return 2;
             default:
-                return 0;
+                return -4;
         }
     }
-
 }
