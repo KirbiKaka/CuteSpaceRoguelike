@@ -12,7 +12,7 @@ public static class EventManager
     static List<UnityAction<int>> listenersForTestEvent = new List<UnityAction<int>>();
 
 	//rover move lists
-	static List<AdventureNode> invokersForRoverMoveEvent = new List<AdventureNode>();
+	static List<EncounterManager> invokersForRoverMoveEvent = new List<EncounterManager>();
 	static List<UnityAction> listenersForRoverMoveEvent = new List<UnityAction>();
 
     static List<Rover> invokersForRoverReachedEncounter = new List<Rover>();
@@ -45,7 +45,7 @@ public static class EventManager
 	#endregion
     
 	#region rover move event
-	public static void AddInvokerForRoverMoveEvent(AdventureNode invoker)
+	public static void AddInvokerForRoverMoveEvent(EncounterManager invoker)
 	{
 		invokersForRoverMoveEvent.Add(invoker);
 		foreach (UnityAction listener in listenersForRoverMoveEvent)
@@ -57,9 +57,9 @@ public static class EventManager
 	public static void AddListenerForRoverMoveEvent(UnityAction handler)
 	{
 		listenersForRoverMoveEvent.Add(handler);
-		foreach (AdventureNode adventureNode in invokersForRoverMoveEvent)
+		foreach (EncounterManager encounterManager in invokersForRoverMoveEvent)
 		{
-			adventureNode.RoverMoveEventAddedEventListener(handler);
+            encounterManager.RoverMoveEventAddedEventListener(handler);
 		}
 	}
 

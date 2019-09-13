@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Rover : MonoBehaviour
 {
     // How far away from the node to stop
-    public int ADVENTURE_NODE_OFFSET_DISTANCE = 350;
+    public int ADVENTURE_NODE_OFFSET_DISTANCE = 340;
     public int ROVER_WALK_SPEED = 120;
 
     //Declare vars and const
