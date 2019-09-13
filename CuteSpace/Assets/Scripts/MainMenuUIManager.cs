@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Scripts.Audio;
 
 public class MainMenuUIManager : MonoBehaviour
 {
@@ -34,24 +35,28 @@ public class MainMenuUIManager : MonoBehaviour
 
     public void DisplayShop()
     {
+        AudioManager.Instance.Play2DSound("ButtonPress");
         shop.SetActive(true);
         mainMenu.SetActive(false);
     }
 
     public void CloseShop()
     {
+        AudioManager.Instance.Play2DSound("ButtonPress");
         shop.SetActive(false);
         mainMenu.SetActive(true);
     }
 
     public void DisplayResearch()
     {
+        AudioManager.Instance.Play2DSound("ButtonPress");
         researchMenu.SetActive(true);
         mainMenu.SetActive(false);
     }
 
     public void CloseResearch()
     {
+        AudioManager.Instance.Play2DSound("ButtonPress");
         researchMenu.SetActive(false);
         mainMenu.SetActive(true);
     }
