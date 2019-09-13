@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4191892876721031084}
   - component: {fileID: 4191892876721031087}
+  - component: {fileID: 946260581}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -45,6 +46,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   researchPoints: 0
   numberOfFriends: 0
-  currentFuel: 0
   maxFuel: 0
-  startingFuel: 3
+  maxDurability: 3
+  researchGainMultiplier: 0
+  acquiredResearch: []
+--- !u!114 &946260581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191892876721031086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b2a1356e72a4cf0b1dff45ead617d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mKeys: []
+  mAudioClips: []

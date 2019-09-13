@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 public class PlayButton : MonoBehaviour
 {
@@ -38,9 +38,19 @@ public class PlayButton : MonoBehaviour
         currentButton.texture = defaultButton;
     }
 
-    public void LoadMinigame()
+    public void PlayGame()
     {
-        SceneManager.LoadScene("MiniGame");
+        GameObject tempManager = GameObject.FindGameObjectWithTag("GameController");
+        if (tempManager != null)
+        {
+            tempManager.GetComponent<GameManager>().LoadMinigame();
+        }
+        else
+        {
+            Debug.Log("There is no GameManager in this scene. Please add one.");
+        }
     }
+
+
 
 }

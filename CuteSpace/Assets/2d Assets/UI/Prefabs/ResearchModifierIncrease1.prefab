@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b7798fc49b445619b05b1096e60629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchCost: 0
+  researchCost: 5
   isPurchased: 0
   researchPrerequisites: []
   defaultImage: {fileID: 2800000, guid: af274e9ee7e724cb29490ed6d5cc01b8, type: 3}

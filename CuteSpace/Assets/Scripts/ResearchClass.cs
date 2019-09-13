@@ -71,17 +71,23 @@ public class ResearchClass : MonoBehaviour
 
     public void PurchaseResearch()
     {
-        if (!isPurchased)
-        {
-            GameObject tempManager = GameObject.FindGameObjectWithTag("GameController");
-            tempManager.GetComponent<GameManager>().AlterResearchPoints(-researchCost);
-            isPurchased = true;
-            SetUnavailable();
-            displayCostText.text = "Purchased!";
-            AudioManager.Instance.Play2DSound("UpgradeEvent");
-            ApplyBenefit();
-        }
+		if (CheckIfCanAfford())
+		{
+			if (!isPurchased)
+			{
+				GameObject tempManager = GameObject.FindGameObjectWithTag("GameController");
+				tempManager.GetComponent<GameManager>().AlterResearchPoints(-researchCost);
 
+                GameObject currencyTextReference = GameObject.FindGameObjectWithTag("CurrencyTracker");
+                currencyTextReference.GetComponent<CurrencyTracker>().UpdateCurrency();
+
+				isPurchased = true;
+				SetUnavailable();
+				displayCostText.text = "Purchased!";
+				AudioManager.Instance.Play2DSound("UpgradeEvent");
+				ApplyBenefit();
+			}
+		}
     }
 
     public void SetUnavailable()

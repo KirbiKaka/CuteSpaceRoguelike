@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Research
   - StopHere
+  - CurrencyTracker
   layers:
   - Default
   - TransparentFX

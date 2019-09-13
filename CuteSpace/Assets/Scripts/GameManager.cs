@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Scripts.Audio;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
 {
-    private GameManager m_Instance;
-    public GameManager Instance { get { return m_Instance; } }
+    // private GameManager m_Instance;
+    //public GameManager Instance { get { return m_Instance; } }
+
+    //public Text currencyDisplayText;
 
     [HideInInspector]
     public float researchPoints;
@@ -16,10 +19,10 @@ public class GameManager : MonoBehaviour
     public int numberOfFriends;
 
     [HideInInspector]
-    public int maxFuel = 15;
+    public int maxFuel = 3;
 
     [HideInInspector]
-    public int maxDurability = 10;
+    public int maxDurability = 3;
 
     [HideInInspector]
     public float researchGainMultiplier;
@@ -31,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        m_Instance = this;
+        //m_Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -39,7 +42,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InitializeCurrency();
-        AudioManager.Instance.Play2DSound("Explore", true, true);
+        LoadMainMenu();
     }
 
     // Update is called once per frame
@@ -56,6 +59,8 @@ public class GameManager : MonoBehaviour
         researchPoints = 0;
         numberOfFriends = 0;
         researchGainMultiplier = 0;
+        maxFuel = 3;
+        maxDurability = 3;
     }
 
     //Alter Key Variables//////////////////////
