@@ -12,7 +12,6 @@ public class AdventureNode : MonoBehaviour
     public const int OUTCOME_2_MAIN = 2;
     public const int OUTCOME_2_ALT = 3;
 
-    RoverMoveEvent roverMoveEvent = new RoverMoveEvent();
     public string mainDialog;
     public string choice1Text;
     public string choice2Text;
@@ -26,17 +25,6 @@ public class AdventureNode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.AddListenerForTestEvent(handleTestEvent);
-    }
-
-    void handleTestEvent(int thing)
-    {
-        print(thing);
-    }
-
-    public void RoverMoveEventAddedEventListener(UnityAction listener)
-    {
-        roverMoveEvent.AddListener(listener);
     }
 
     private void Update()

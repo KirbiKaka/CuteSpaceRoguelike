@@ -13,7 +13,7 @@ public static class EventManager
 
 	//rover move lists
 	static List<EncounterManager> invokersForRoverMoveEvent = new List<EncounterManager>();
-	static List<UnityAction> listenersForRoverMoveEvent = new List<UnityAction>();
+	static List<UnityAction<GameObject>> listenersForRoverMoveEvent = new List<UnityAction<GameObject>>();
 
     static List<Rover> invokersForRoverReachedEncounter = new List<Rover>();
     static List<UnityAction> listenersForRoverReachedEncounter = new List<UnityAction>();
@@ -48,13 +48,13 @@ public static class EventManager
 	public static void AddInvokerForRoverMoveEvent(EncounterManager invoker)
 	{
 		invokersForRoverMoveEvent.Add(invoker);
-		foreach (UnityAction listener in listenersForRoverMoveEvent)
+		foreach (UnityAction<GameObject> listener in listenersForRoverMoveEvent)
 		{
 			invoker.RoverMoveEventAddedEventListener(listener);
 		}
 	}
 
-	public static void AddListenerForRoverMoveEvent(UnityAction handler)
+	public static void AddListenerForRoverMoveEvent(UnityAction<GameObject> handler)
 	{
 		listenersForRoverMoveEvent.Add(handler);
 		foreach (EncounterManager encounterManager in invokersForRoverMoveEvent)

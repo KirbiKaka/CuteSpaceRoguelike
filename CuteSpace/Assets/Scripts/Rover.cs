@@ -37,9 +37,8 @@ public class Rover : MonoBehaviour
 
     }
 
-    public void handleRoverMoveEvent()
+    public void handleRoverMoveEvent(GameObject adventureNode)
     {
-        GameObject adventureNode = GameObject.FindGameObjectWithTag("StopHere");
         //Transform currentRoverPosition = gameObject.transform;
         Vector2 roverStartPosition = gameObject.transform.position;
         Vector2 currentAdventureNodePosition = adventureNode.transform.position;

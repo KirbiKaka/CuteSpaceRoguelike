@@ -138,6 +138,6 @@ public class Timer : MonoBehaviour
             started = false;
         }
     }
-	
-	#endregion
+
+    #endregion
 }

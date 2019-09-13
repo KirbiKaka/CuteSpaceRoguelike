@@ -15,6 +15,7 @@ public class EncounterManager : MonoBehaviour
     public GameObject durabilityReadout;
     public GameObject scrapReadout;
     public GameObject researchReadout;
+    public GameObject groundPrefab;
 
     RoverMoveEvent roverMoveEvent = new RoverMoveEvent();
 
@@ -30,6 +31,10 @@ public class EncounterManager : MonoBehaviour
     Timer startGameTimer;
     bool gameStarted;
     AdventureNode currentEncounter;
+    AdventureNode previousEncounter;
+    bool waitingForResolution;
+    Timer resolutionTapTimer;
+    bool toggleSpawnMoreGround = true;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +52,9 @@ public class EncounterManager : MonoBehaviour
         startGameTimer = gameObject.AddComponent<Timer>();
         startGameTimer.Duration = 2;
         startGameTimer.Run();
+
+        resolutionTapTimer = gameObject.AddComponent<Timer>();
+        resolutionTapTimer.Duration = 1;
     }
 
     // Update is called once per frame
@@ -60,13 +68,19 @@ public class EncounterManager : MonoBehaviour
             encounterPosition.x += 850;
             encounterPosition.y -= 100;
             encounterPosition.z = 0;
-            GameObject encounter = Instantiate(encounterPool1[0], encounterPosition, Quaternion.identity);
+            GameObject encounter = Instantiate(encounterPool1[encounterCount], encounterPosition, Quaternion.identity);
             currentEncounter = encounter.GetComponent<AdventureNode>();
-            roverMoveEvent.Invoke();
+            encounterCount += 1;
+            roverMoveEvent.Invoke(currentEncounter.gameObject);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            PlayerTappedOnScreen();
         }
     }
 
-    public void RoverMoveEventAddedEventListener(UnityAction listener)
+    public void RoverMoveEventAddedEventListener(UnityAction<GameObject> listener)
     {
         roverMoveEvent.AddListener(listener);
     }
@@ -101,6 +115,46 @@ public class EncounterManager : MonoBehaviour
         playerScrap += currentEncounter.GetScrapOutcome();
         playerResearch += currentEncounter.GetResearchOutcome();
         UpdateReadouts();
+
+        // Wait for user to tap away the Resolution screen
+        waitingForResolution = true;
+        resolutionTapTimer.Run();
+    }
+
+    public void PlayerTappedOnScreen()
+    {
+        if (waitingForResolution && resolutionTapTimer.Finished)
+        {
+            dialogBox.SetActive(false);
+            if (previousEncounter != null)
+            {
+                Object.Destroy(previousEncounter.gameObject);
+            }
+            previousEncounter = currentEncounter;
+            //TODO RANDOMIZE THE ENCOUNTER INSTEAD OF JUST GOING THRU
+            Vector3 encounterPosition = Camera.main.transform.position;
+            encounterPosition.x += 850;
+            encounterPosition.y -= 100;
+            encounterPosition.z = 0;
+            GameObject encounter = Instantiate(encounterPool1[encounterCount], encounterPosition, Quaternion.identity);
+            currentEncounter = encounter.GetComponent<AdventureNode>();
+            encounterCount += 1;
+            roverMoveEvent.Invoke(currentEncounter.gameObject);
+
+            if (toggleSpawnMoreGround)
+            {
+                Vector3 groundPosition = Camera.main.transform.position;
+                groundPosition.x += 936;
+                groundPosition.z = 0;
+                Instantiate(groundPrefab, groundPosition, Quaternion.identity);
+            }
+            toggleSpawnMoreGround = !toggleSpawnMoreGround;
+
+            Object.Destroy(resolutionTapTimer);
+            resolutionTapTimer = gameObject.AddComponent<Timer>();
+            resolutionTapTimer.Duration = 1;
+            waitingForResolution = false;
+        }
     }
 
     void UpdateReadouts()
