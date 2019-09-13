@@ -85,7 +85,7 @@ public class EncounterManager : MonoBehaviour
 
             Vector3 encounterPosition = Camera.main.transform.position;
             encounterPosition.x += 820;
-            encounterPosition.y -= 100;
+            encounterPosition.y -= 50;
             encounterPosition.z = 0;
             encounterCount = Random.Range(0, encounterPool1.Count);
             prevEncounterCount = encounterCount;
@@ -186,7 +186,7 @@ public class EncounterManager : MonoBehaviour
                 //TODO RANDOMIZE THE ENCOUNTER INSTEAD OF JUST GOING THRU
                 Vector3 encounterPosition = Camera.main.transform.position;
                 encounterPosition.x += 850;
-                encounterPosition.y -= 100;
+                encounterPosition.y -= 50;
                 encounterPosition.z = 0;
                 encounterCount = Random.Range(0, encounterPool1.Count);
 

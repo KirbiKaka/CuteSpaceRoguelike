@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 651086837
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 82e4d7295a69e441eaef46678a7f0451, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8411599f1b755477ba11edcb19bb2c9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,11 +93,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20f93552aa87e461a8f7a605202fe86b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainDialog: A friendly alien trader waves you over. They are offering research points
-    for scrap.
-  choice1Text: Trade 15 scrap
-  choice2Text: Save your scrap
-  resolution1Text: You reciieve 40 research!
+  mainDialog: A friendly alien trader waves you over. They don't speak your language,
+    but they can tell you are a foreigner to the planet. The alien pulls out some
+    diagrams detailing the habitats of various wildlife on the planet. They gesture
+    at your scrap questioningly.
+  choice1Text: Trade 15 Scrap
+  choice2Text: Save your Scrap
+  resolution1Text: The trader smiles as much as a fish-like face can manage and hands
+    you the information. You receive 40 Research!
   resolution1AltText: 
-  resolution2Text: 'The trader wishes you well. '
+  resolution1Alt2Text: 
+  resolution2Text: The alien puts away their goods and bids you farewell.
   resolution2AltText: 
+  resolution2Alt2Text: 
