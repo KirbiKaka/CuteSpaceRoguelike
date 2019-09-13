@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Scripts.Audio;
 
 public class EncounterManager : MonoBehaviour
 {
@@ -117,6 +118,7 @@ public class EncounterManager : MonoBehaviour
     // When the event manager hears that the rover reached an encounter, pop up the dialog and choices
     void ShowEncounterInfo()
     {
+        AudioManager.Instance.Play2DSound("PopupAppear");
         dialogBox.SetActive(true);
         Text dialogText = dialogBox.GetComponentInChildren<Text>();
         dialogText.text = currentEncounter.mainDialog;
@@ -133,7 +135,7 @@ public class EncounterManager : MonoBehaviour
     {
         // You have to do this or else the currentEncounter won't return the right stuff
         currentEncounter.MakeChoice(choice);
-
+        AudioManager.Instance.Play2DSound("ButtonPress");
         dialogBox.SetActive(true);
         Text dialogText = dialogBox.GetComponentInChildren<Text>();
         dialogText.text = currentEncounter.GetResolutionText();
@@ -172,6 +174,7 @@ public class EncounterManager : MonoBehaviour
             }
             else
             {
+                AudioManager.Instance.Play2DSound("ButtonPress");
                 dialogBox.SetActive(false);
                 if (previousEncounter != null)
                 {
