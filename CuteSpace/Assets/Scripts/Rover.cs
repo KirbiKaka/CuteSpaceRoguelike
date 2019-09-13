@@ -16,6 +16,10 @@ public class Rover : MonoBehaviour
     int testNumber = 5;
     IEnumerator coroutine;
 
+    Animator animator;
+    const int IDLE_ANIMATION_STATE = 0;
+    const int RUN_ANIMATION_STATE = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +27,7 @@ public class Rover : MonoBehaviour
         EventManager.AddInvokerForTestEvent(this);
         EventManager.AddInvokerForRoverReachedEncounter(this);
         EventManager.AddListenerForRoverMoveEvent(handleRoverMoveEvent);
-        
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,6 +49,7 @@ public class Rover : MonoBehaviour
         currentAdventureNodePosition.x -= ADVENTURE_NODE_OFFSET_DISTANCE;
         coroutine = MoveFromTo(gameObject.transform, roverStartPosition, currentAdventureNodePosition, ROVER_WALK_SPEED);
         StartCoroutine(coroutine);
+        animator.SetInteger("state", RUN_ANIMATION_STATE);
     }
 
     public void TestEventAddedEventListener(UnityAction<int> listener)
@@ -70,5 +75,6 @@ public class Rover : MonoBehaviour
         }
         objectToMove.position = b;
         roverReachedEncounterEvent.Invoke();
+        animator.SetInteger("state", IDLE_ANIMATION_STATE);
     }
 }
