@@ -35,7 +35,7 @@ public class EncounterManager : MonoBehaviour
     bool waitingForResolution;
     Timer resolutionTapTimer;
     bool toggleSpawnMoreGround = true;
-    const int SHOW_RESOURCE_CHANGE_DURATION = 2;
+    const int SHOW_RESOURCE_CHANGE_DURATION = 1;
     Timer showResourceChangeTimer;
     bool resourceChangeVisible;
 

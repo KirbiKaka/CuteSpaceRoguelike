@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295a24a4b8c9d4c79b9c5ac82a199c27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendImage: {fileID: 2800000, guid: 4e09160d8da844f1989d5970ae1459b5, type: 3}
+  friendImage: {fileID: 2800000, guid: 9f3e42436be654e908d82022ea4106f9, type: 3}
   friendName: Energizer Bunny
   friendDescription: All Encounters with Wildlife Consume No Energy
   friendID: 1

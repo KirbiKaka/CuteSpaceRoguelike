@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class FriendManager : MonoBehaviour
 {
+    public GameObject bunnyFriendObject;
     public List<FriendClass> potentialFriendList;
 
     private bool displayingDescription;
@@ -29,6 +30,7 @@ public class FriendManager : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             AddFriend("Energizer Bunny");
+            bunnyFriendObject.SetActive(true);
         }
 
         if (Input.GetKeyDown("up"))
