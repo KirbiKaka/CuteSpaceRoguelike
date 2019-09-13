@@ -99,7 +99,11 @@ MonoBehaviour:
   choice2Text: Investigate the Shuffling
   resolution1Text: You work hard
   resolution1AltText: 
+  resolution1Alt2Text: 
   resolution2Text: You find nothing. It must have just been a faulty wire in my motherboard
   resolution2AltText: You find a blue electric bunny. It approaches cautiously and
     zaps you. +2 battery -1 durability. The bunny seems to want to follow you. You
     have made a friend!
+  resolution2Alt2Text: 
+  caveFriend: {fileID: 9198639231630593853, guid: 195d44c8f6b6048b9a3276f171af74c5,
+    type: 3}

@@ -7,6 +7,7 @@ TagManager:
   - Research
   - StopHere
   - CurrencyTracker
+  - EncounterManager
   layers:
   - Default
   - TransparentFX

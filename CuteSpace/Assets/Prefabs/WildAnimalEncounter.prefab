@@ -100,8 +100,12 @@ MonoBehaviour:
   choice2Text: Try to pet it
   resolution1Text: You got +10 research!
   resolution1AltText: 
+  resolution1Alt2Text: 
   resolution2Text: You got +30 research!
   resolution2AltText: 
+  resolution2Alt2Text: 
+  helperFriendBunny: {fileID: 9198639231630593853, guid: 195d44c8f6b6048b9a3276f171af74c5,
+    type: 3}
 --- !u!95 &-4883964273169449337
 Animator:
   serializedVersion: 3

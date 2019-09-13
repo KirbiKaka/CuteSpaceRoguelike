@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CaveEncounter : AdventureNode
 {
+
+    public FriendClass caveFriend;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,8 @@ public class CaveEncounter : AdventureNode
             else
             {
                 SetChoiceMade(OUTCOME_2_ALT);
+                GameObject tempFriendManager = GameObject.FindGameObjectWithTag("EncounterManager");
+                tempFriendManager.GetComponent<FriendManager>().AddFriend(caveFriend.friendName);
                 //get energizer bunny
             }
 
