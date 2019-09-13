@@ -12,6 +12,7 @@ public class Rover : MonoBehaviour
 
     //Declare vars and const
     TestEvent testEvent = new TestEvent();
+    RoverReachedEncounter roverReachedEncounterEvent = new RoverReachedEncounter();
     int testNumber = 5;
     IEnumerator coroutine;
 
@@ -20,6 +21,7 @@ public class Rover : MonoBehaviour
     void Start()
     {
         EventManager.AddInvokerForTestEvent(this);
+        EventManager.AddInvokerForRoverReachedEncounter(this);
         EventManager.AddListenerForRoverMoveEvent(handleRoverMoveEvent);
         
     }
@@ -50,6 +52,11 @@ public class Rover : MonoBehaviour
         testEvent.AddListener(listener);
     }
 
+    public void RoverReachedEncounterAddedEventListener(UnityAction listener)
+    {
+        roverReachedEncounterEvent.AddListener(listener);
+    }
+
 
     IEnumerator MoveFromTo(Transform objectToMove, Vector2 a, Vector2 b, float speed)
     {
@@ -62,6 +69,6 @@ public class Rover : MonoBehaviour
             yield return new WaitForFixedUpdate();         // Leave the routine and return here in the next frame
         }
         objectToMove.position = b;
-        testEvent.Invoke(testNumber);
+        roverReachedEncounterEvent.Invoke();
     }
 }

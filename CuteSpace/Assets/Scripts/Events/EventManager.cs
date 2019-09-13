@@ -14,6 +14,12 @@ public static class EventManager
 	//rover move lists
 	static List<AdventureNode> invokersForRoverMoveEvent = new List<AdventureNode>();
 	static List<UnityAction> listenersForRoverMoveEvent = new List<UnityAction>();
+
+    static List<Rover> invokersForRoverReachedEncounter = new List<Rover>();
+    static List<UnityAction> listenersForRoverReachedEncounter = new List<UnityAction>();
+
+    static List<ChoiceButton> invokersForMakeChoiceEvent = new List<ChoiceButton>();
+    static List<UnityAction<int>> listenersForMakeChoiceEvent = new List<UnityAction<int>>();
 	#endregion
 
 
@@ -57,5 +63,45 @@ public static class EventManager
 		}
 	}
 
-	#endregion
+    #endregion
+
+    #region rover reaches an encounter
+    public static void AddInvokerForRoverReachedEncounter(Rover invoker)
+    {
+        invokersForRoverReachedEncounter.Add(invoker);
+        foreach (UnityAction listener in listenersForRoverReachedEncounter)
+        {
+            invoker.RoverReachedEncounterAddedEventListener(listener);
+        }
+    }
+
+    public static void AddListenerForRoverReachedEncounter(UnityAction handler)
+    {
+        listenersForRoverReachedEncounter.Add(handler);
+        foreach (Rover rover in invokersForRoverReachedEncounter)
+        {
+            rover.RoverReachedEncounterAddedEventListener(handler);
+        }
+    }
+    #endregion
+
+    #region make choice event 
+    public static void AddInvokerForMakeChoiceEvent(ChoiceButton invoker)
+    {
+        invokersForMakeChoiceEvent.Add(invoker);
+        foreach (UnityAction<int> listener in listenersForMakeChoiceEvent)
+        {
+            invoker.MakeChoiceEventAddedEventListener(listener);
+        }
+    }
+
+    public static void AddListenerForMakeChoiceEvent(UnityAction<int> handler)
+    {
+        listenersForMakeChoiceEvent.Add(handler);
+        foreach (ChoiceButton button in invokersForMakeChoiceEvent)
+        {
+            button.MakeChoiceEventAddedEventListener(handler);
+        }
+    }
+    #endregion
 }

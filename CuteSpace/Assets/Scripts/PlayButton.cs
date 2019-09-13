@@ -40,7 +40,7 @@ public class PlayButton : MonoBehaviour
 
     public void LoadMinigame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MiniGame");
     }
 
 }

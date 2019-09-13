@@ -20,7 +20,6 @@ public class AdventureNode : MonoBehaviour
         moveWaitTimer.Run();
     }
 
-    // Update is called once per frame
     void handleTestEvent(int thing)
     {
         print(thing);
