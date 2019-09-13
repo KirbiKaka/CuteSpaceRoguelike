@@ -7,14 +7,18 @@ public class FriendManager : MonoBehaviour
 {
     public List<FriendClass> potentialFriendList;
 
+    private bool displayingDescription;
+
     //[HideInInspector]
     public List<FriendClass> friendList;
     public List<GameObject> friendUIPositionList;
     public List<RawImage> friendUIImageList;
+    public List<Text> friendUITooltipList;
     // Start is called before the first frame update
     void Start()
     {
         InitializeLists();
+        displayingDescription = false;
     }
 
     // Update is called once per frame
@@ -45,6 +49,12 @@ public class FriendManager : MonoBehaviour
         foreach (Transform child in transform)
         {
             friendUIPositionList.Add(child.gameObject);
+        }
+
+        foreach (Text text in friendUITooltipList)
+        {
+            text.text = "";
+            text.enabled = false;
         }
 
         //potentialFriendList = new List<FriendClass>();
@@ -100,6 +110,7 @@ public class FriendManager : MonoBehaviour
 
             friendUIImageList[temp].texture = friend.friendImage;
             friendUIImageList[temp].enabled = true;
+            friendUITooltipList[temp].text = friend.friendDescription;
 
             //Transform holderObject = friend.GetComponent<Transform>();
            // holderObject.transform.position = friendUIPositionList[temp].transform.position;
@@ -141,7 +152,30 @@ public class FriendManager : MonoBehaviour
             friend.RemoveBenefit();
             friendList.Remove(friend);
             potentialFriendList.Add(friend);
+            friendUITooltipList[temp].text = "";
             temp++;
         }
+    }
+
+    public void DisplayDescription(RawImage friendUIImage)
+    {
+
+        if (friendUIImage.enabled)
+        {
+            Text tempText = friendUIImage.GetComponentInChildren<Text>();
+            if (friendUITooltipList.Contains(tempText))
+            {
+                tempText.enabled = true;
+                displayingDescription = true;
+            }
+        }
+
+
+    }
+
+    public void HideDescription(RawImage friendUIImage)
+    {
+        Text tempText = friendUIImage.GetComponentInChildren<Text>();
+        tempText.enabled = false;
     }
 }
