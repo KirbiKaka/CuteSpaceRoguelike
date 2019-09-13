@@ -97,7 +97,8 @@ MonoBehaviour:
     gem. You also hear suffleing deeper down into the caves. What do you do?
   choice1Text: Mine the Gem
   choice2Text: Investigate the Shuffling
-  resolution1Text: You work hard
+  resolution1Text: You work hard mining the gem. The work is well worth it. You get
+    30 research and 15 scrap
   resolution1AltText: 
   resolution1Alt2Text: 
   resolution2Text: You find nothing. It must have just been a faulty wire in my motherboard
