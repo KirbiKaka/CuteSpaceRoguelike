@@ -20,9 +20,9 @@ public class EncounterManager : MonoBehaviour
     RoverMoveEvent roverMoveEvent = new RoverMoveEvent();
 
     int playerFuel;
-    int playerFuelMax = 15;
+    int playerFuelMax = 3;
     int playerDurability;
-    int playerDurabilityMax = 10;
+    int playerDurabilityMax = 3;
     int playerScrap;
     int playerResearch;
 
@@ -156,11 +156,13 @@ public class EncounterManager : MonoBehaviour
         // Start a new encounter
         if (waitingForResolution && resolutionTapTimer.Finished)
         {
+            //if the player isn't dead
             if (playerFuel <= 0 || playerDurability <= 0)
             {
                 GameObject tempManager = GameObject.FindGameObjectWithTag("GameController");
                 if (tempManager != null)
                 {
+                    tempManager.GetComponent<GameManager>().AlterResearchPoints(playerResearch);
                     tempManager.GetComponent<GameManager>().LoadMainMenu();
                 }
                 else
