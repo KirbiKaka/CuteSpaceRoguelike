@@ -15,4 +15,15 @@ public class WildAnimalEncounter : AdventureNode
     {
         
     }
+
+    override public int GetResearchOutcome()
+    {
+        switch (GetChoiceMade())
+        {
+            case OUTCOME_1_MAIN:
+                return 10;
+            default:
+                return 30;
+        }
+    }
 }

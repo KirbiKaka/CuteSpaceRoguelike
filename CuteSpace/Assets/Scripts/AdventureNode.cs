@@ -7,10 +7,10 @@ using UnityEngine.Events;
 public class AdventureNode : MonoBehaviour
 {
     // To track the outcome of this node. Based on whether you chose choice 1 or 2.
-    const int OUTCOME_1_MAIN = 0;
-    const int OUTCOME_1_ALT = 1;
-    const int OUTCOME_2_MAIN = 2;
-    const int OUTCOME_2_ALT = 3;
+    public const int OUTCOME_1_MAIN = 0;
+    public const int OUTCOME_1_ALT = 1;
+    public const int OUTCOME_2_MAIN = 2;
+    public const int OUTCOME_2_ALT = 3;
 
     RoverMoveEvent roverMoveEvent = new RoverMoveEvent();
     public string mainDialog;
@@ -56,6 +56,12 @@ public class AdventureNode : MonoBehaviour
         }
     }
 
+    public int GetChoiceMade()
+    {
+        return choiceMade;
+    }
+
+    // Requires MakeChoice to be called first
     public string GetResolutionText()
     {
         switch (choiceMade)
@@ -69,6 +75,29 @@ public class AdventureNode : MonoBehaviour
             default:
                 return resolution2AltText;
         }
+    }
 
+    // Requires MakeChoice to be called first
+    virtual public int GetFuelOutcome()
+    {
+        return 0;
+    }
+
+    // Requires MakeChoice to be called first
+    virtual public int GetDurabilityOutcome()
+    {
+        return 0;
+    }
+
+    // Requires MakeChoice to be called first
+    virtual public int GetScrapOutcome()
+    {
+        return 0;
+    }
+
+    // Requires MakeChoice to be called first
+    virtual public int GetResearchOutcome()
+    {
+        return 0;
     }
 }

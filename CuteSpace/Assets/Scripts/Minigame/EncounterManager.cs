@@ -11,6 +11,10 @@ public class EncounterManager : MonoBehaviour
     public GameObject choiceButton1;
     public GameObject choiceButton2;
     public List<GameObject> encounterPool1;
+    public GameObject fuelReadout;
+    public GameObject durabilityReadout;
+    public GameObject scrapReadout;
+    public GameObject researchReadout;
 
     RoverMoveEvent roverMoveEvent = new RoverMoveEvent();
 
@@ -18,6 +22,7 @@ public class EncounterManager : MonoBehaviour
     int playerFuelMax = 15;
     int playerDurability;
     int playerDurabilityMax = 10;
+    int playerScrap;
     int playerResearch;
 
     int encounterCount;
@@ -37,6 +42,7 @@ public class EncounterManager : MonoBehaviour
         playerFuel = playerFuelMax;
         // TODO: inc playerDurabilityMax based on supergame upgrades
         playerDurability = playerDurabilityMax;
+        UpdateReadouts();
 
         startGameTimer = gameObject.AddComponent<Timer>();
         startGameTimer.Duration = 2;
@@ -89,5 +95,19 @@ public class EncounterManager : MonoBehaviour
         dialogText.text = currentEncounter.GetResolutionText();
         choiceButton1.SetActive(false);
         choiceButton2.SetActive(false);
+
+        playerFuel += currentEncounter.GetFuelOutcome();
+        playerDurability += currentEncounter.GetDurabilityOutcome();
+        playerScrap += currentEncounter.GetScrapOutcome();
+        playerResearch += currentEncounter.GetResearchOutcome();
+        UpdateReadouts();
+    }
+
+    void UpdateReadouts()
+    {
+        fuelReadout.GetComponent<Text>().text = "Battery: " + playerFuel;
+        durabilityReadout.GetComponent<Text>().text = "Durability: " + playerDurability;
+        scrapReadout.GetComponent<Text>().text = "Scrap: " + playerScrap;
+        researchReadout.GetComponent<Text>().text = "Research: " + playerResearch;
     }
 }
