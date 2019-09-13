@@ -60,4 +60,5 @@ MonoBehaviour:
   friendImage: {fileID: 2800000, guid: bd77def86b2344e2fb932e2b8bedb31c, type: 3}
   friendName: Efficient Memory
   friendDescription: Increases all research earned for the rest of the adventure.
+  friendID: 2
   researchBoost: 0.1

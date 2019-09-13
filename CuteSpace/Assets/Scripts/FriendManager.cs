@@ -14,6 +14,8 @@ public class FriendManager : MonoBehaviour
     public List<GameObject> friendUIPositionList;
     public List<RawImage> friendUIImageList;
     public List<Text> friendUITooltipList;
+
+    public FriendClass testFriendRequirement;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,21 @@ public class FriendManager : MonoBehaviour
         {
             AddFriend("Efficient Memory");
         }
+        /*
+
+        if (Input.GetKeyDown("down"))
+        {
+            //Debug.Log("Friend you're looking for " + testFriendRequirement.friendName);
+            if (CheckForFriend(testFriendRequirement))
+            {
+                Debug.Log("You have Bunny");
+            }
+            else
+            {
+                Debug.Log("You don't have Bunny");
+            }
+        }
+        */
     }
 
     private void InitializeLists()
@@ -118,7 +135,7 @@ public class FriendManager : MonoBehaviour
             temp++;
         }
     }
-
+    /*
     public bool CheckForEnergizer()
     {
         foreach (FriendClass friend in friendList)
@@ -142,6 +159,33 @@ public class FriendManager : MonoBehaviour
         }
         return false;
     }
+    */
+
+    public bool CheckForFriend(FriendClass friend)
+    {
+        foreach (FriendClass myFriend in friendList)
+        {
+            if (friend.friendID == myFriend.friendID)
+            {
+                if (friend.ReturnFriendStatus())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
+
+    }
+
 
     public void RemoveAllFriends()
     {

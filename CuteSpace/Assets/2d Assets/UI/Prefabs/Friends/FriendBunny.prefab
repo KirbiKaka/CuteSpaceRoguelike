@@ -52,7 +52,7 @@ MonoBehaviour:
   friendImage: {fileID: 2800000, guid: 4e09160d8da844f1989d5970ae1459b5, type: 3}
   friendName: Energizer Bunny
   friendDescription: All Encounters with Wildlife Consume No Energy
-  freeWildLifeEnergy: 0
+  friendID: 1
 --- !u!222 &7949083637363967852
 CanvasRenderer:
   m_ObjectHideFlags: 0

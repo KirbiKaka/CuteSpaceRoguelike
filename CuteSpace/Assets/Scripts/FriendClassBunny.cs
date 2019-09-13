@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class FriendClassBunny : FriendClass
 {
-    [HideInInspector]
-    public bool freeWildLifeEnergy;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +19,11 @@ public class FriendClassBunny : FriendClass
 
     public override void ApplyBenefit()
     {
-        freeWildLifeEnergy = true;
+        EnableFriend();
     }
 
     public override void RemoveBenefit()
     {
-        freeWildLifeEnergy = false;
+        DisableFriend();
     }
 }

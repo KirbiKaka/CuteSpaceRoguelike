@@ -2429,5 +2429,11 @@ PrefabInstance:
       propertyPath: friendUITooltipList.Array.data[2]
       value: 
       objectReference: {fileID: 2067789719}
+    - target: {fileID: 5704992192714911747, guid: 91a5bc6aa3d654a3caea49322ad459e8,
+        type: 3}
+      propertyPath: testFriendRequirement
+      value: 
+      objectReference: {fileID: 675776310170510181, guid: d93dbb4b8da024d258b98a52e7b70022,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91a5bc6aa3d654a3caea49322ad459e8, type: 3}

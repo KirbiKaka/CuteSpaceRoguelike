@@ -24,6 +24,7 @@ public class FriendClassResearchBoost : FriendClass
         if (tempManager != null)
         {
             tempManager.GetComponent<GameManager>().AlterResearchModifier(researchBoost);
+            EnableFriend();
         }
         else
         {
@@ -38,6 +39,7 @@ public class FriendClassResearchBoost : FriendClass
         if (tempManager != null)
         {
             tempManager.GetComponent<GameManager>().AlterResearchModifier(-researchBoost);
+            DisableFriend();
         }
         else
         {
