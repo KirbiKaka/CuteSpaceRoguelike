@@ -35,6 +35,9 @@ public class EncounterManager : MonoBehaviour
     bool waitingForResolution;
     Timer resolutionTapTimer;
     bool toggleSpawnMoreGround = true;
+    const int SHOW_RESOURCE_CHANGE_DURATION = 2;
+    Timer showResourceChangeTimer;
+    bool resourceChangeVisible;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +58,9 @@ public class EncounterManager : MonoBehaviour
 
         resolutionTapTimer = gameObject.AddComponent<Timer>();
         resolutionTapTimer.Duration = 1;
+
+        showResourceChangeTimer = gameObject.AddComponent<Timer>();
+        showResourceChangeTimer.Duration = SHOW_RESOURCE_CHANGE_DURATION;
     }
 
     // Update is called once per frame
@@ -78,6 +84,18 @@ public class EncounterManager : MonoBehaviour
         {
             PlayerTappedOnScreen();
         }
+
+        if (resourceChangeVisible && showResourceChangeTimer.Finished)
+        {
+            fuelReadout.transform.GetChild(0).gameObject.SetActive(false);
+            durabilityReadout.transform.GetChild(0).gameObject.SetActive(false);
+            scrapReadout.transform.GetChild(0).gameObject.SetActive(false);
+            researchReadout.transform.GetChild(0).gameObject.SetActive(false);
+            Object.Destroy(showResourceChangeTimer);
+            showResourceChangeTimer = gameObject.AddComponent<Timer>();
+            showResourceChangeTimer.Duration = SHOW_RESOURCE_CHANGE_DURATION;
+            resourceChangeVisible = false;
+        }
     }
 
     public void RoverMoveEventAddedEventListener(UnityAction<GameObject> listener)
@@ -86,7 +104,8 @@ public class EncounterManager : MonoBehaviour
     }
 
     // When the event manager hears that the rover reached an encounter, pop up the dialog and choices
-    void ShowEncounterInfo() {
+    void ShowEncounterInfo()
+    {
         dialogBox.SetActive(true);
         Text dialogText = dialogBox.GetComponentInChildren<Text>();
         dialogText.text = currentEncounter.mainDialog;
@@ -110,10 +129,10 @@ public class EncounterManager : MonoBehaviour
         choiceButton1.SetActive(false);
         choiceButton2.SetActive(false);
 
-        playerFuel += currentEncounter.GetFuelOutcome();
-        playerDurability += currentEncounter.GetDurabilityOutcome();
-        playerScrap += currentEncounter.GetScrapOutcome();
-        playerResearch += currentEncounter.GetResearchOutcome();
+        ChangeFuel(currentEncounter.GetFuelOutcome());
+        ChangeDurability(currentEncounter.GetDurabilityOutcome());
+        ChangeScrap(currentEncounter.GetScrapOutcome());
+        ChangeResearch(currentEncounter.GetResearchOutcome());
         UpdateReadouts();
 
         // Wait for user to tap away the Resolution screen
@@ -123,6 +142,7 @@ public class EncounterManager : MonoBehaviour
 
     public void PlayerTappedOnScreen()
     {
+        // Start a new encounter
         if (waitingForResolution && resolutionTapTimer.Finished)
         {
             dialogBox.SetActive(false);
@@ -140,6 +160,10 @@ public class EncounterManager : MonoBehaviour
             currentEncounter = encounter.GetComponent<AdventureNode>();
             encounterCount += 1;
             roverMoveEvent.Invoke(currentEncounter.gameObject);
+
+            // Every event costs 1 fuel
+            ChangeFuel(-1);
+            UpdateReadouts();
 
             if (toggleSpawnMoreGround)
             {
@@ -159,9 +183,105 @@ public class EncounterManager : MonoBehaviour
 
     void UpdateReadouts()
     {
-        fuelReadout.GetComponent<Text>().text = "Battery: " + playerFuel;
-        durabilityReadout.GetComponent<Text>().text = "Durability: " + playerDurability;
+        fuelReadout.GetComponent<Text>().text = "Battery: " + playerFuel + "/" + playerFuelMax;
+        durabilityReadout.GetComponent<Text>().text = "Durability: " + playerDurability + "/" + playerDurabilityMax;
         scrapReadout.GetComponent<Text>().text = "Scrap: " + playerScrap;
         researchReadout.GetComponent<Text>().text = "Research: " + playerResearch;
+    }
+
+    void ChangeFuel(int change)
+    {
+        if (change != 0)
+        {
+            playerFuel += change;
+            UpdateReadouts();
+            GameObject changeReadoutObject = fuelReadout.transform.GetChild(0).gameObject;
+            Text changeReadout = changeReadoutObject.GetComponent<Text>();
+            changeReadoutObject.SetActive(true);
+            if (change > 0)
+            {
+                changeReadout.color = Color.green;
+                changeReadout.text = "+" + change;
+            }
+            else if (change < 0)
+            {
+                changeReadout.color = Color.red;
+                changeReadout.text = "" + change;
+            }
+            resourceChangeVisible = true;
+            showResourceChangeTimer.Run();
+        }
+    }
+
+    void ChangeDurability(int change)
+    {
+        if (change != 0)
+        {
+            playerDurability += change;
+            UpdateReadouts();
+            GameObject changeReadoutObject = durabilityReadout.transform.GetChild(0).gameObject;
+            Text changeReadout = changeReadoutObject.GetComponent<Text>();
+            changeReadoutObject.SetActive(true);
+            if (change > 0)
+            {
+                changeReadout.color = Color.green;
+                changeReadout.text = "+" + change;
+            }
+            else if (change < 0)
+            {
+                changeReadout.color = Color.red;
+                changeReadout.text = "" + change;
+            }
+            resourceChangeVisible = true;
+            showResourceChangeTimer.Run();
+        }
+    }
+
+    void ChangeScrap(int change)
+    {
+        if (change != 0)
+        {
+            playerScrap += change;
+            UpdateReadouts();
+            GameObject changeReadoutObject = scrapReadout.transform.GetChild(0).gameObject;
+            Text changeReadout = changeReadoutObject.GetComponent<Text>();
+            changeReadoutObject.SetActive(true);
+            if (change > 0)
+            {
+                changeReadout.color = Color.green;
+                changeReadout.text = "+" + change;
+            }
+            else if (change < 0)
+            {
+                changeReadout.color = Color.red;
+                changeReadout.text = "" + change;
+            }
+            resourceChangeVisible = true;
+            showResourceChangeTimer.Run();
+        }
+    }
+
+    void ChangeResearch(int change)
+    {
+        if (change != 0)
+        {
+            playerResearch += change;
+            UpdateReadouts();
+            GameObject changeReadoutObject = researchReadout.transform.GetChild(0).gameObject;
+            Text changeReadout = changeReadoutObject.GetComponent<Text>();
+            changeReadoutObject.SetActive(true);
+            if (change > 0)
+            {
+                changeReadout.color = Color.green;
+                changeReadout.text = "+" + change;
+            }
+            else if (change < 0)
+            {
+                changeReadout.color = Color.red;
+                changeReadout.text = "" + change;
+            }
+            resourceChangeVisible = true;
+            showResourceChangeTimer.Run();
+        }
     }
 }

@@ -13,7 +13,6 @@ public class Rover : MonoBehaviour
     //Declare vars and const
     TestEvent testEvent = new TestEvent();
     RoverReachedEncounter roverReachedEncounterEvent = new RoverReachedEncounter();
-    int testNumber = 5;
     IEnumerator coroutine;
 
     Animator animator;
